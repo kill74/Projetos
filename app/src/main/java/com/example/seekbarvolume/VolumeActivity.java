@@ -22,7 +22,7 @@ public class VolumeActivity extends AppCompatActivity {
     TextView textView;
     ImageView imageView;
     Button button;
-
+    boolean on = true; //PARA FAZER COMO O OUTRO RAPAZ FEZ >:)
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +34,7 @@ public class VolumeActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         }); // Fechei aqui pois estava a dar conflito com o codigo em baixo
-            // mais especificamente com o "seekBar" e o "textView"
+            // mais especificamente com o "seekBar" e o "textView" (??)
 
 
             // isto ira buscar as variaveis que estao la em cima e os objetos que estam no activity
@@ -50,9 +50,9 @@ public class VolumeActivity extends AppCompatActivity {
                     textView.setText(String.valueOf(progress));
 
                     /*if (progress == 0){
-                        imageView.setImageResource(R.drawable.ic_volume_off); //nao sei porque isto nao funciona
+                        imageView.setImageResource(R.drawable.ic_volume_off); //nao sei porque isto nao funciona (18.10)
                     }*/
-                    //isto serve para
+                    //isto serve para mudar a imagem consuante o volume
                     if (progress >= 0 && progress <= 30) {
                         imageView.setImageResource(R.drawable.ic_volume_low);
                     }
@@ -71,19 +71,19 @@ public class VolumeActivity extends AppCompatActivity {
                 @Override
                 public void onStopTrackingTouch(SeekBar seekBar) {
                 }
-
-                boolean on = true; //PARA FAZER COMO O OUTRO RAPAZ FEZ >:)
-
-                //EVENTO ON CLICK
-             public void disable (View v) {
-                 if(on) {
-                     imageView.setImageResource(R.drawable.ic_volume_off);
-                     on = false;
-                 } else {
-                     imageView.setImageResource(R.drawable.ic_volume_high);
-                     on = true;
-                 }
-             }
         });
+    }
+
+    // porque e que nao esta a dar ?? (por fazer!!!!!) (18.45)
+    // que grande burro, porque e que guardei isto no onCreate ????????? (22.20)
+    //ja esta a funcionar (22.20)
+    public void disable(View v) {
+        if(on) {
+            imageView.setImageResource(R.drawable.ic_volume_off);
+            on = false;
+        } else {
+            imageView.setImageResource(R.drawable.ic_volume_high);
+            on = true;
+        }
     }
 }
