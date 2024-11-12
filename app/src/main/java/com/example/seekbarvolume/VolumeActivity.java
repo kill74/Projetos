@@ -1,7 +1,9 @@
 package com.example.seekbarvolume;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -51,16 +53,15 @@ public class VolumeActivity extends AppCompatActivity {
                         imageView.setImageResource(R.drawable.ic_volume_off); //nao sei porque isto nao funciona
                     }*/
                     //isto serve para
-                    if (progress >= 0 && progress<= 30 ){
+                    if (progress >= 0 && progress <= 30) {
                         imageView.setImageResource(R.drawable.ic_volume_low);
                     }
-                    if (progress >= 31 && progress <= 70){
+                    if (progress >= 31 && progress <= 70) {
                         imageView.setImageResource(R.drawable.ic_volume_medium);
                     }
-                    if (progress >= 71 && progress <= 100){
+                    if (progress >= 71 && progress <= 100) {
                         imageView.setImageResource(R.drawable.ic_volume_high);
                     }
-
                 }
 
                 @Override
@@ -71,6 +72,18 @@ public class VolumeActivity extends AppCompatActivity {
                 public void onStopTrackingTouch(SeekBar seekBar) {
                 }
 
+                boolean on = true; //PARA FAZER COMO O OUTRO RAPAZ FEZ >:)
+
+                //EVENTO ON CLICK
+             public void disable (View v) {
+                 if(on) {
+                     imageView.setImageResource(R.drawable.ic_volume_off);
+                     on = false;
+                 } else {
+                     imageView.setImageResource(R.drawable.ic_volume_high);
+                     on = true;
+                 }
+             }
         });
     }
 }
