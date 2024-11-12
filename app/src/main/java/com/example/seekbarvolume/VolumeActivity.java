@@ -1,6 +1,8 @@
 package com.example.seekbarvolume;
 
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -12,8 +14,12 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class VolumeActivity extends AppCompatActivity {
 
+
+    //Criacao de variaveis
     SeekBar seekBar;
     TextView textView;
+    ImageView imageView;
+    Button button;
 
 
     @Override
@@ -28,23 +34,41 @@ public class VolumeActivity extends AppCompatActivity {
         }); // Fechei aqui pois estava a dar conflito com o codigo em baixo
             // mais especificamente com o "seekBar" e o "textView"
 
+
+            // isto ira buscar as variaveis que estao la em cima e os objetos que estam no activity
             seekBar = findViewById(R.id.seekBar);
             textView = findViewById(R.id.textView);
+            imageView= findViewById(R.id.imageView2);
+            button = findViewById(R.id.button);
 
+            //Adicionei o que o professor disse no moodle
             seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                 @Override
                 public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                     textView.setText(String.valueOf(progress));
+
+                    /*if (progress == 0){
+                        imageView.setImageResource(R.drawable.ic_volume_off); //nao sei porque isto nao funciona
+                    }*/
+                    //isto serve para
+                    if (progress >= 0 && progress<= 30 ){
+                        imageView.setImageResource(R.drawable.ic_volume_low);
+                    }
+                    if (progress >= 31 && progress <= 70){
+                        imageView.setImageResource(R.drawable.ic_volume_medium);
+                    }
+                    if (progress >= 71 && progress <= 100){
+                        imageView.setImageResource(R.drawable.ic_volume_high);
+                    }
+
                 }
 
                 @Override
                 public void onStartTrackingTouch(SeekBar seekBar) {
-
                 }
 
                 @Override
                 public void onStopTrackingTouch(SeekBar seekBar) {
-
                 }
 
         });
