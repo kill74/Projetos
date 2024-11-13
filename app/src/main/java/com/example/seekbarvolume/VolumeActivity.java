@@ -16,7 +16,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class VolumeActivity extends AppCompatActivity {
 
-
+    //isto e obrigatorio criar para o codigo funcionar
     //Criacao de variaveis
     SeekBar seekBar;
     TextView textView;
@@ -26,6 +26,14 @@ public class VolumeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_volume);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        }); // Fechei aqui pois estava a dar conflito com o codigo em protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_volume);
@@ -54,7 +62,7 @@ public class VolumeActivity extends AppCompatActivity {
                     }*/
                     //isto serve para mudar a imagem consuante o volume
                     if (progress >= 0 && progress <= 30) {
-                        imageView.setImageResource(R.drawable.ic_volume_low);
+                        imageView.setImageResource(R.drawable.ic_volume_low); // isto ira buscar as imagens a pasta do "drawable"
                     }
                     if (progress >= 31 && progress <= 70) {
                         imageView.setImageResource(R.drawable.ic_volume_medium);
